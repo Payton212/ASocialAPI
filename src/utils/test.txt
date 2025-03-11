@@ -1,0 +1,19 @@
+// user post test 
+localhost:3001/api/users/
+{
+    "username": "usernameTest1",
+    "email": "tester123@hotmail.com"
+}
+localhost:3001/api/thoughts/
+// thought post test
+{
+    "userId": "",
+    "thoughtText":"I THOUGHT this was a test",
+    "username":"theThinker"
+}
+localhost:3001/api/thoughts/thoughtId/reactions
+// reaction post test
+{
+    "reactionBody":"don't have a bad reaction!",
+    "username":"theReactor"
+}
