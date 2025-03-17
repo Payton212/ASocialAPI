@@ -82,7 +82,7 @@ export const addThoughtReaction = async (req, res) => {
             res.status(404).json({ message: "no thought found" });
         }
         else {
-            res.json(addThoughtReaction);
+            res.json({ message: 'thought added!' });
         }
     }
     catch (err) {

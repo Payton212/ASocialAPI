@@ -54,3 +54,38 @@ export const updateUser = async (req: Request, res: Response) => {
         res.status(500).json(err);
     }
 }
+export const addFriend = async (req: Request, res: Response) => {
+    try {
+        const friend = await User.findOneAndUpdate(
+          { _id: req.params.userId },
+            {
+                $addToSet: {
+                    friends: req.body } },
+            { runValidators: true, new: true }
+        );
+        if (!friend) {
+            res.status(404).json({ message: 'no friend to add' });
+        } else {
+            res.json({ message: 'friend added!' });
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+export const removeFriend = async (req: Request, res: Response) => {
+    try {
+        const removedFriend = await User.findOneAndUpdate(
+          { _id: req.params.userId },
+          { $pull: { friends: req.params.friendId } },
+          { new: true }
+        );
+        if (!removedFriend) {
+            res.status(404).json({message: 'no friend to remove'})
+        } else {
+            res.json({message: 'friend removed :('})
+        }
+        
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
